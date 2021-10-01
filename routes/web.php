@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,4 +19,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//TESTING
 Route::get('/test', [TestController::class, 'testFunction']);
+
+//Views
+Route::get('/add-user', [UserController::class, 'getAddUserForm']);
+
+//DB CRUD
+Route::post('/insert', [UserController::class, 'insertAction']);
+Route::get('/show/{id}', [UserController::class, 'showAction']);
+Route::get('/delete/{id}', [UserController::class, 'deleteAction']);
+Route::get('/update/{id}', [UserController::class, 'updateAction']);
+Route::get('/showall', [UserController::class, 'showAllAction']);
+
+
+
