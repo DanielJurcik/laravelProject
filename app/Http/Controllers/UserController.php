@@ -47,7 +47,7 @@ class UserController extends Controller
 
     public function updateAction($id){
         $user = User::where("id", "=", $id)->first();
-        $user->update(["vek" => mt_rand(1,80)]);
+        return view("update", ['user' => $user]);
     }
 
     public function deleteAction($id){
@@ -57,9 +57,7 @@ class UserController extends Controller
 
     public function showAllAction(){
         $users = User::all();
-        foreach ($users as $user) {
-            echo $user->email . " " . $user->vel ." ". $user->updated_at."<br>";
-        }
+        return view("users", ['users' => $users]);
     }
 
     public function getAddUserForm(){
