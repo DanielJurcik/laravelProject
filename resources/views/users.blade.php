@@ -14,7 +14,7 @@ use App\Controllers\UserController
                 {{ $user->email }} 
             </td>
             <td>
-                <a href="{{ url('update',$user->id) }}">EDITOVAŤ</a>
+                <a href="{{ url('show',$user->id) }}">EDITOVAŤ</a>
             </td>
         </tr>
     @endforeach

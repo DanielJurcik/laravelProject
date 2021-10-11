@@ -29,7 +29,7 @@ Route::get('/add-user', [UserController::class, 'getAddUserForm']);
 Route::post('/insert', [UserController::class, 'insertAction']);
 Route::get('/show/{id}', [UserController::class, 'showAction']);
 Route::get('/delete/{id}', [UserController::class, 'deleteAction']);
-Route::get('/update/{id}', [UserController::class, 'updateAction']);
+Route::post('/update/{id}', [UserController::class, 'updateAction']);
 Route::get('/showall', [UserController::class, 'showAllAction']);
 
 

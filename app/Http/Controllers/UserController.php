@@ -3,15 +3,18 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 
 class UserController extends Controller
 {
     public function showAction($id){
         $user = User::find($id);
-        echo $user->email."<br>";
-        echo $user->meno." ".$user->priezvisko."<br>";
-        echo $user->vek."<br>";
-        echo $user->updated_at;
+        //$user = User::where("id", "=", $id)->first();
+        return view("update", ['user' => $user]);
+        // echo $user->email."<br>";
+        // echo $user->meno." ".$user->priezvisko."<br>";
+        // echo $user->vek."<br>";
+        // echo $user->updated_at;
     }
 
     public function insertAction(Request $request){
@@ -45,9 +48,17 @@ class UserController extends Controller
         return response()->view('adduser');
     }
 
-    public function updateAction($id){
-        $user = User::where("id", "=", $id)->first();
-        return view("update", ['user' => $user]);
+    public function updateAction($id, Request $request){
+        $user = User::find($id);
+        //$user = User::where("id", "=", $id)->first();
+        $user->update([
+            'meno' => $request->input('firstname'),
+            'priezvisko' => $request->input('lastname'),
+            'email' => $request->input('Email'),
+            'vek' => $request->input('age')
+        ]);
+        return redirect()->action([UserController::class, 'showAllAction']);
+        //return view("users", ['users' => $users]);
     }
 
     public function deleteAction($id){
